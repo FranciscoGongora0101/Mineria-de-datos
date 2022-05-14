@@ -28,24 +28,25 @@ def main() -> None:
     df_animes['genre'] = df_animes['genre'].str.replace('[', '')
     df_animes['genre'] = df_animes['genre'].str.replace(']', '')
     df_animes['genre'] = df_animes['genre'].str.replace("'", "")
+    
 
     #Se elminan duplicados de los csv
     print(df_animes.uid.duplicated().sum())
-    df_animes.drop_duplicates()
+    df_animes.drop_duplicates(subset=['uid'], inplace=True)
 
     print(df_profiles.profile.duplicated().sum())
-    df_profiles.drop_duplicates()
+    df_profiles.drop_duplicates(inplace=True)
 
     print(df_reviews.uid.duplicated().sum())
-    df_reviews.drop_duplicates()
+    df_reviews.drop_duplicates(inplace=True)
 
     #Se imprimen y se generan los csv nuevos
-    print(df_animes)
-    print(df_animes.dtypes)
-    print(df_profiles)
-    print(df_profiles.dtypes) 
-    print(df_reviews)
-    print(df_reviews.dtypes)
+    #print(df_animes)
+    #print(df_animes.dtypes)
+    #print(df_profiles)
+    #print(df_profiles.dtypes) 
+    #print(df_reviews)
+    #print(df_reviews.dtypes)
     df_animes.to_csv("animes_clean.csv", index=False)
     df_reviews.to_csv("reviews_clean.csv", index=False)
     df_profiles.to_csv("profiles_clean.csv", index=False)
